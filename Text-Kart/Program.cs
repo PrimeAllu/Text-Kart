@@ -166,7 +166,8 @@
                      .ToList();
 
 
-                results.Append(characters, playerDistance);
+                results.Add(("Player", playerDistance));
+                results = results.OrderByDescending(r => r.Distance).ToList();
 
 
                 Console.Clear();
@@ -226,16 +227,16 @@
         {
             Console.WriteLine("\nCustomize your vehicle stats:");
             Console.WriteLine($"1. Speed: {speed} (Points: {playerPoints}) buy 10 km/h for 10 points only!!");
-            Console.WriteLine($"2. Durability: {durability} ({playerPoints}) buy 1 more durabilty for 5 points only!!");
+            Console.WriteLine($"2. Durability: {durability} (Points: {playerPoints}) buy 1 more durabilty for 5 points only!!");
             Console.WriteLine("3. Finish customization");
 
             int choice = int.Parse(Console.ReadLine());
-            if (choice == 1 && playerPoints >= 20)
+            if (choice == 1 && playerPoints >= 10)
             {
                 speed += 10;
                 playerPoints -= 20;
             }
-            else if (choice == 2 && playerPoints >= 10 && durability < 6)
+            else if (choice == 2 && playerPoints >= 5)
             {
                 durability += 1;
                 playerPoints -= 5;
